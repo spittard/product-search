@@ -5,45 +5,31 @@ import ActionLink from './actionlink';
 
 export default function Menu() {
   const [products, setProducts, filter, setFilter] = useContext(ProductContext)
-//   const [menu, setMenu] = useState(false)
-//   const [value, setValue] = useState("")
 
-    const onFilterClick = function (key, value){
-        setFilter((product) => product.fields[key][0] === value);
-    }
 return (
-
 <aside class="menu">
   <p className="menu-label has-text-black">
     Genres
   </p>
   <ul class="menu-list">
     {products.map(product => (
-        <li><a>{product.fields.genres[0]}</a></li>
+        <li><ActionLink group="genres" product={product}/></li>
     ))} 
-    {/* <li><a>Dashboard</a></li>
-    <li><a>Customers</a></li> */}
   </ul>
   <p class="menu-label">
     Directors
   </p>
   <ul class="menu-list">
     {products.map(product => (
-        <li><a>{product.fields.directors[0]}</a></li>
+        <li><ActionLink group="directors" product={product}/></li>
     ))} 
-    {/* <li><a>Dashboard</a></li>
-    <li><a>Customers</a></li> */}
   </ul>
   <p class="menu-label">
     Actors
   </p>
   <ul class="menu-list">
     {products.map(product => (
-        <div>
         <li><ActionLink group="actors" product={product}/></li>
-        {/* <button onClick={product.bind(this, product)} className="button has-text-weight-bold">actor</button> */}
-        {/* <button onClick={onFilterClick.bind(this, 'actors', product.fields.actors[0])} className="button has-text-weight-bold">actor</button> */}
-        </div>
     ))} 
   </ul> 
   {/* <ul class="menu-list">
