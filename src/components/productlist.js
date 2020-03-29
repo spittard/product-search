@@ -5,15 +5,22 @@ import { ProductContext } from "../ProductContext";
 import Product from "./product";
 
 export default function ProductList() {
-  const [products, setProducts] = useContext(ProductContext);
+  const [products,,filter,setFilter] = useContext(ProductContext);
 
   return (
     <div>
       <section className="section">
         <div className="container">
-          {products.map(product => (
-            <Product key={product.id} product={product}/>
-          ))}
+          {
+          filter === undefined?
+            products.map(product => (
+                <Product key={product.id} product={product}/>
+          )) :
+            products.filter(product => product.fields[filter.group][0] === filter.value)
+                .map(product => (
+                    <Product key={product.id} product={product}/>
+          ))
+          }
         </div>
       </section>
     </div>

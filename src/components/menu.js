@@ -1,12 +1,17 @@
 import React, { useState, useContext } from 'react'
 
 import { ProductContext } from "../ProductContext";
+import ActionLink from './actionlink';
 
 export default function Menu() {
-  const [products, setProducts] = useContext(ProductContext)
+  const [products, setProducts, filter, setFilter] = useContext(ProductContext)
 //   const [menu, setMenu] = useState(false)
 //   const [value, setValue] = useState("")
-  return (
+
+    const onFilterClick = function (key, value){
+        setFilter((product) => product.fields[key][0] === value);
+    }
+return (
 
 <aside class="menu">
   <p className="menu-label has-text-black">
@@ -34,7 +39,11 @@ export default function Menu() {
   </p>
   <ul class="menu-list">
     {products.map(product => (
-        <li><a>{product.fields.actors[0]}</a></li>
+        <div>
+        <li><ActionLink group="actors" product={product}/></li>
+        {/* <button onClick={product.bind(this, product)} className="button has-text-weight-bold">actor</button> */}
+        {/* <button onClick={onFilterClick.bind(this, 'actors', product.fields.actors[0])} className="button has-text-weight-bold">actor</button> */}
+        </div>
     ))} 
   </ul> 
   {/* <ul class="menu-list">

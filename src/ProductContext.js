@@ -6,7 +6,7 @@ import React, {
 export const ProductContext = createContext();
 
 export const ProductProvider = (props) => {
-    const [test, setTest] = useState('hi');
+    const [filter, setFilter] = useState(undefined);
     const [products, setProducts] = useState([{
             "fields": {
                 "directors": ["Joseph Gordon-Levitt"],
@@ -77,9 +77,7 @@ export const ProductProvider = (props) => {
     ]);
 
     return ( <ProductContext.Provider value = {
-        [products, setProducts]
-        // ,
-        // [test, setTest]
+        [products, setProducts, filter, setFilter]
     } > {
         props.children
     } </ProductContext.Provider>)
