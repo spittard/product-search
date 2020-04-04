@@ -1,22 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { v4 } from "uuid";
 
 import { ProductContext } from "../ProductContext";
 
 export default function Navbar() {
+  const [,setProducts,,,query,setQuery] = useContext(ProductContext);
   const [value, setValue] = useState("")
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(false);
+
+  useEffect(() => {
+    fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=' + value)
+      .then((res) => res.json())
+      .then((res) => {
+      const results = res.hits.hits.map(hit => hit._source);
+      setProducts(results);})
+      .catch((error) => console.error(error))
+  },[query]);
 
   const search = (e) => {
-//     e.preventDefault()
-//     setTodos([...todos, {
-//       "id": v4(),
-//       "value": value,
-//       "done": false
-//     }])
-//     setValue("")
+    setQuery(value);
   }
+
+  
 
   return (
     <div className="navbar has-shadow">

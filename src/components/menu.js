@@ -12,48 +12,36 @@ return (
     Genres
   </p>
   <ul class="menu-list">
-    {products.map(product => (
-        <li><ActionLink group="genres" product={product}/></li>
-    ))} 
+    {[...new Set(products.map(product => product.fields.genres[0]))]
+        .map(value => (
+            <li><ActionLink group="genres" value={value}/></li>
+        ))
+    }
+    {/* {products.map(product => (
+        <li><ActionLink group="genres" value={product.fields.genres[0]}/></li>
+    ))}  */}
   </ul>
   <p class="menu-label">
     Directors
   </p>
   <ul class="menu-list">
-    {products.map(product => (
-        <li><ActionLink group="directors" product={product}/></li>
-    ))} 
+  {[...new Set(products.map(product => product.fields.directors[0]))]
+        .map(value => (
+            <li><ActionLink group="directors" value={value}/></li>
+        ))
+    } 
   </ul>
   <p class="menu-label">
     Actors
   </p>
   <ul class="menu-list">
-    {products.map(product => (
-        <li><ActionLink group="actors" product={product}/></li>
-    ))} 
+  {[...new Set(products.map(product => product.fields.actors[0]))]
+        .map(value => (
+            <li><ActionLink group="actors" value={value}/></li>
+        ))
+    } 
   </ul> 
-  {/* <ul class="menu-list">
-    <li><a>Team Settings</a></li>
-    <li>
-      <a class="is-active">Manage Your Team</a>
-      <ul>
-        <li><a>Members</a></li>
-        <li><a>Plugins</a></li>
-        <li><a>Add a member</a></li>
-      </ul>
-    </li>
-    <li><a>Invitations</a></li>
-    <li><a>Cloud Storage Environment Settings</a></li>
-    <li><a>Authentication</a></li>
-  </ul>
-  <p class="menu-label">
-    Transactions
-  </p>
-  <ul class="menu-list">
-    <li><a>Payments</a></li>
-    <li><a>Transfers</a></li>
-    <li><a>Balance</a></li>
-  </ul> */}
+  
 </aside>
   )
 }

@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { ProductProvider } from "./ProductContext";
+import { ProductContext } from "./ProductContext";
 
-import Navbar from "./components/navbar";
 import Layout from "./components/layout";
-
-// import ProductList from "./components/productlist";
-// import Menu from "./components/menu";
 
 function App() {
   return (
