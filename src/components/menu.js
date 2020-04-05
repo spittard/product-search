@@ -15,7 +15,7 @@ return (
     {[...new Set(products.map(product => product.fields.genres[0]))]
         .sort()
         .map(value => (
-            <li><ActionLink group="genres" value={value}/></li>
+            <li key={value}><ActionLink group="genres" value={value}/></li>
         ))
     }
   </ul>
