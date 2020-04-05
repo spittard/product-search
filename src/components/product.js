@@ -7,7 +7,7 @@ export default function Product(props) {
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-          <img src={props.product.fields.image_url} alt="Placeholder image"/>
+          <img src={props.product.fields.image_url} onError={(e)=>{e.target.onerror = null; e.target.src="movie.jpg"}} alt="movie.jpg"/>
         </figure>
       </div>
       <div class="media-content">

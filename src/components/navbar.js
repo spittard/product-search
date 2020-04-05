@@ -2,21 +2,23 @@ import React, { useState, useContext, useEffect } from 'react'
 import { ProductContext } from "../ProductContext";
 
 export default function Navbar() {
-  const [,setProducts,,,query,setQuery] = useContext(ProductContext);
-  const [value, setValue] = useState("")
+  const [,setProducts,,setFilter,query,setQuery] = useContext(ProductContext);
+  const [value, setValue] = useState("Dave");
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=s')
+    fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=' + query)
+    // fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=Dave')
       .then((res) => res.json())
       .then((res) => {
       const results = res.hits.hits.map(hit => hit._source);
       setProducts(results);})
       .catch((error) => console.error(error))
-  },[query]);
+  },[query, setProducts]);
 
   const search = (e) => {
-    setQuery(value);
+    setFilter(undefined);
+    setQuery(query);
   }
 
   return (
@@ -38,7 +40,7 @@ export default function Navbar() {
           <div className="navbar-item">
             <form onSubmit={search} className="field has-addons">
               <p className="control is-expanded">
-                <input value={value} type="text" onChange={(e) => setValue(e.target.value)} className="input" />
+                <input value={query} type="text" onChange={(e) => setQuery(e.target.value)} className="input" />
               </p>
               <p className="control">
                 <button className="button is-info has-text-weight-bold">
