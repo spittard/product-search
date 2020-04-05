@@ -4,8 +4,8 @@ import { ProductContext } from "../ProductContext";
 import ActionLink from './actionlink';
 
 export default function Menu() {
-  const [products, setProducts, filter, setFilter] = useContext(ProductContext)
-
+  const [products, setProducts, filter, setFilter] = useContext(ProductContext);
+  
 return (
 <aside class="menu">
   <p className="menu-label has-text-black">
@@ -13,19 +13,18 @@ return (
   </p>
   <ul class="menu-list">
     {[...new Set(products.map(product => product.fields.genres[0]))]
+        .sort()
         .map(value => (
             <li><ActionLink group="genres" value={value}/></li>
         ))
     }
-    {/* {products.map(product => (
-        <li><ActionLink group="genres" value={product.fields.genres[0]}/></li>
-    ))}  */}
   </ul>
   <p class="menu-label">
     Directors
   </p>
   <ul class="menu-list">
   {[...new Set(products.map(product => product.fields.directors[0]))]
+        .sort()
         .map(value => (
             <li><ActionLink group="directors" value={value}/></li>
         ))
@@ -36,6 +35,7 @@ return (
   </p>
   <ul class="menu-list">
   {[...new Set(products.map(product => product.fields.actors[0]))]
+        .sort()
         .map(value => (
             <li><ActionLink group="actors" value={value}/></li>
         ))

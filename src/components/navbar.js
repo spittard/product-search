@@ -1,7 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-
-import { v4 } from "uuid";
-
 import { ProductContext } from "../ProductContext";
 
 export default function Navbar() {
@@ -10,7 +7,7 @@ export default function Navbar() {
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=' + value)
+    fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=s')
       .then((res) => res.json())
       .then((res) => {
       const results = res.hits.hits.map(hit => hit._source);
@@ -21,8 +18,6 @@ export default function Navbar() {
   const search = (e) => {
     setQuery(value);
   }
-
-  
 
   return (
     <div className="navbar has-shadow">
