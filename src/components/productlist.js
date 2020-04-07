@@ -16,7 +16,7 @@ export default function ProductList() {
             products.map(product => (
                 <Product key={product.id} product={product}/>
           )) :
-            products.filter(product => product.fields[filter.group][0] === filter.value)
+            products.filter(product => product.fields[filter.group].includes(filter.value))
                 .map(product => (
                     <Product key={product.id} product={product}/>
           ))

@@ -3,28 +3,15 @@ import React, {
     useState,
     useCallback
 } from 'react'
-import axios from 'axios';
 
 export const ProductContext = createContext();
-
-
 
 export const ProductProvider =  (props) => {
     const [query, setQuery] = useState();
     const [filter, setFilter] = useState(undefined);
     const [products, setProducts] = useState([]);
 
-    const searchProducts = (props) => {
-        // const [,setProducts] = useCallback(ProductContext);
-        axios.get('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=thor')
-        // axios.get(`http://www.reddit.com/r/reactjs.json`)
-          .then(res => {
-            // const posts = res.data.data.children.map(obj => obj.data);
-            const results = res.data.hits.hits.map(hit => hit._source);
-           setProducts({ results });
-          });
-        }
-    
+    //     
     // const [products, setProducts] = useState([{
     //         "fields": {
     //             "directors": ["Joseph Gordon-Levitt"],
@@ -96,7 +83,6 @@ export const ProductProvider =  (props) => {
 
       
     return ( <ProductContext.Provider value = {
-        // [products, setProducts, filter, setFilter]
         [products, setProducts, filter, setFilter, query, setQuery]
     } > {
         props.children
