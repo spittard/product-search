@@ -8,7 +8,6 @@ export default function Navbar() {
 
   useEffect(() => {
     fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=' + query)
-    // fetch('https://ikchkii2sd.execute-api.us-west-2.amazonaws.com/?q=Dave')
       .then((res) => res.json())
       .then((res) => {
       const results = res.hits.hits.map(hit => hit._source);
@@ -19,6 +18,7 @@ export default function Navbar() {
   const search = (e) => {
     setFilter(undefined);
     setQuery(query);
+    console.log(query);
   }
 
   return (
